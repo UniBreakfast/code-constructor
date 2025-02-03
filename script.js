@@ -3,6 +3,19 @@ const newCommandDialog = body.querySelector('dialog#new-command');
 const newCommandForm = newCommandDialog.querySelector('form');
 const codeContainer = body.querySelector('#lines-of-code');
 
+const defaults = {
+  'number': {
+    title: 'Number literal',
+    className: 'number',
+    textContent: "0",
+  },
+  'string': {
+    title: 'String literal',
+    className: 'string',
+    textContent: '""',
+  },
+}
+
 window.onclick = handleClickOnEmpty;
 newCommandForm.onsubmit = handleSubmitNewCommand;
 
@@ -49,22 +62,7 @@ function makeCommandPiece(descriptor) {
 function preFill(codeElement, descriptor) {
   const { command } = descriptor;
 
-  switch (command) {
-    case "number":
-      Object.assign(codeElement, {
-        title: 'Number literal',
-        className: 'number',
-        textContent: "0",
-      });
-      break;
-    case "string":
-      Object.assign(codeElement, {
-        title: 'String literal',
-        className: 'string',
-        textContent: '""',
-      });
-      break;
-  }
+  Object.assign(codeElement, defaults[command]);
 }
 
 function getData(form) {
