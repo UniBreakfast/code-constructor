@@ -1,0 +1,17 @@
+ol#lines-of-code {
+  list-style: none;
+
+  li {
+    counter-increment: line;
+    position: relative;
+
+    &::before {
+      content: counter(line);
+      position: absolute;
+      right: 100%;
+      width: 4em;
+      text-align: right;
+      padding-inline: 6px;
+    }
+  }
+}

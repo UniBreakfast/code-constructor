@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head id="head">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' style='background:black'><text y='16' font-family='Trebuchet MS' font-weight='900' fill='orange'>UB</text></svg>">
+
+  <!--<link rel="stylesheet" href="reset.css">-->
+  <!--<link rel="stylesheet" href="base.css">-->
+  <link rel="stylesheet" href="style.css">
+  <!--<script type="module" src="app.js"></script>-->
+  <script src="script.js" defer></script>
+
+  <title>Code Constructor</title>
+</head>
+
+<body id="body">
+  <dialog id="new-command">
+    <h2>New Command</h2>
+
+    <form method="dialog">
+      <div class="row">
+        <label for="command">Command:</label>
+
+        <select name="command" id="command">
+          <option value="number">Number literal</option>
+          <option value="string">String literal</option>
+        </select>
+      </div>
+      
+      <hr>
+      
+      <div class="buttons">
+        <button value="add">Add</button>
+        <button>Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+  <ol id="lines-of-code"></ol>
+</body>
+
+</html>
