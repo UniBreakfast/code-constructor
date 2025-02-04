@@ -1,5 +1,12 @@
+dialog {
+  text-align: center;
+}
+
 ol#lines-of-code {
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 
   li {
     counter-increment: line;
@@ -10,8 +17,18 @@ ol#lines-of-code {
       position: absolute;
       right: 100%;
       width: 4em;
+      height: 100%;
       text-align: right;
+      align-content: center;
       padding-inline: 6px;
     }
   }
+}
+
+code {
+  display: flex;
+  background-color: #ddd;
+  width: max-content;
+  padding: 4px 8px;
+  border-radius: 4px;
 }

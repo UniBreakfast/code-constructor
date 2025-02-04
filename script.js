@@ -2,6 +2,10 @@ const { body } = document;
 const newCommandDialog = body.querySelector('dialog#new-command');
 const newCommandForm = newCommandDialog.querySelector('form');
 const codeContainer = body.querySelector('#lines-of-code');
+const editCommandDialog = body.querySelector('dialog#edit-command');
+const editCommandForm = editCommandDialog.querySelector('form');
+
+let thatCodeElement;
 
 const defaults = {
   'number': {
@@ -16,23 +20,50 @@ const defaults = {
   },
 }
 
-window.onclick = handleClickOnEmpty;
+window.onclick = handleClickOnPage;
 newCommandForm.onsubmit = handleSubmitNewCommand;
+editCommandForm.onsubmit = handleSubmitEditCommand;
+
+function handleClickOnPage(e) {
+  if (isOnHtmlBody(e)) {
+    showNewCommandDialog();
+
+  } else if (isOnCommandPiece(e)) {
+    const codeElement = e.target.closest('code');
+
+    showEditCommandDialog(codeElement);
+  }
+}
 
 function handleSubmitNewCommand(e) {
   const btn = e.submitter;
   
   if (btn.value === "add") {
-    const newCommandDescriptor = getData(newCommandForm);
+    const descriptor = getData(newCommandForm);
 
-    addCommand(newCommandDescriptor);
+    addCommand(descriptor);
   }
 }
 
-function handleClickOnEmpty(e) {
-  if (isOnHtmlBody(e)) {
-    showNewCommandDialog();
+function handleSubmitEditCommand(e) {
+  const btn = e.submitter;
+
+  if (btn.value === "save") {
+    const codeElement = thatCodeElement;
+    const descriptor = getData(editCommandForm);
+
+    fillAccordingly(codeElement, descriptor);
   }
+}
+
+function isOnCommandPiece(e) {
+  return e.target.tagName === "CODE";
+}
+
+function showEditCommandDialog(codeElement) {
+  thatCodeElement = codeElement;
+  editCommandForm.value.value = codeElement.textContent;
+  editCommandDialog.showModal();
 }
 
 function addCommand(descriptor) {
@@ -54,15 +85,17 @@ function makeLineOfCode(commandPiece) {
 function makeCommandPiece(descriptor) {
   const codeElement = document.createElement('code');
 
-  preFill(codeElement, descriptor);
+  fillAccordingly(codeElement, descriptor);
   
   return codeElement;
 }
 
-function preFill(codeElement, descriptor) {
-  const { command } = descriptor;
+function fillAccordingly(codeElement, descriptor) {
+  const { command, value } = descriptor;
 
   Object.assign(codeElement, defaults[command]);
+
+  if (value) codeElement.textContent = value;
 }
 
 function getData(form) {
