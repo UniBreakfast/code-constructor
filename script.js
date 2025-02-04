@@ -48,11 +48,15 @@ function handleSubmitNewCommand(e) {
 function handleSubmitEditCommand(e) {
   const btn = e.submitter;
 
-  if (btn.value === "save") {
-    const codeElement = thatCodeElement;
+  if (btn.value === 'save') {
     const descriptor = getData(editCommandForm);
 
-    fillAccordingly(codeElement, descriptor);
+    fillAccordingly(thatCodeElement, descriptor);
+
+  } else if (btn.value === 'remove') {
+    const lineOfCode = thatCodeElement.closest('li');
+
+    lineOfCode.remove();
   }
 }
 
