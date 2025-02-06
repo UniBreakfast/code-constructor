@@ -26,9 +26,52 @@ ol#lines-of-code {
 }
 
 code {
-  display: flex;
-  background-color: #ddd;
+  /* border-radius */
+  --r: 6px;
+  /* background-color */
+  --bg: #ccc;
+  /* foreground-color */
+  --fg: #000;
+  /* border-color */
+  --bc: #666;
+  /* slot-color */
+  --sc: #fff;
+  /* shadow-color */
+  --dc: #555;
+  /* glare-color */
+  --gl: #fff;
+  /* line-width */
+  --lw: 2px;
+  /* padding-block */
+  --pb: 5px;
+  /* padding-inline */
+  --pi: 6px;
+  /* text-shadow */
+  --ts: 0 0 5px var(--gl), 0 0 5px var(--gl), 0 0 5px var(--gl);
+  /* box-shadow */
+  --bs: 0 0 10px var(--dc);
+
+  display: inline-block;
+  font-size: 18px;
+  background-color: var(--bg);
   width: max-content;
-  padding: 4px 8px;
-  border-radius: 4px;
+  font-weight: bold;
+  padding: var(--pb) var(--pi);
+  border-radius: var(--r);
+  color: var(--fg);
+  text-shadow: var(--ts), var(--ts), var(--ts), var(--ts), var(--ts), var(--ts);
+  box-shadow: inset var(--bs);
+  border: var(--lw) solid var(--bc);
+
+  span {
+    display: inline-block;
+    min-width: 0.8em;
+    min-height: 1.6em;
+    vertical-align: middle;
+    background: var(--sc);
+    padding: calc(var(--pb) / 2) calc(var(--pi) / 2);
+    border-radius: var(--r);
+    box-shadow: var(--bs);
+    border: var(--lw) solid var(--bc);
+  }
 }

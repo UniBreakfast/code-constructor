@@ -24,6 +24,8 @@
         <label for="command">Command:</label>
 
         <select name="command" id="command">
+          <option value="monolithic">Monolithic</option>
+          <option value="prefix"></option>
           <option value="number">Number literal</option>
           <option value="string">String literal</option>
         </select>
@@ -38,7 +40,28 @@
     </form>
   </dialog>
 
-  <ol id="lines-of-code"></ol>
+  <ol id="lines-of-code">
+    <li>
+      <code>
+        const
+        <span>
+          <code>a</code>
+        </span>
+        =
+        <span>
+          <code>
+            <span>
+              <code>b</code>
+            </span>
+            +
+            <span>
+              <code>c</code>
+            </span>
+          </code>
+        </span>
+      </code>
+    </li>
+  </ol>
 
   <dialog id="edit-command">
     <h2>Edit Command</h2>
